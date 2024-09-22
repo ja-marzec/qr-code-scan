@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'QrCodeScanner.dart';
+import 'main.dart';
 
 class ScannedUrlView extends StatefulWidget {
   final String url;
@@ -65,7 +66,9 @@ class _ScannedUrlViewState extends State<ScannedUrlView> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).popUntil((route) => route.isFirst);
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const MyHome(),
+            ));
           },
         ),
       ),
@@ -107,11 +110,10 @@ class _ScannedUrlViewState extends State<ScannedUrlView> {
               ),
               TextButton(
                 child: const Text('Scan again'),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => QrCodeScanner(),
-                  ),
-                ),
+                onPressed: () =>
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const MyHome(),
+                    ))
               ),
             ],
           ),

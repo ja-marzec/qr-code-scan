@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'QRCodeScanner.dart';
 
-void main() => runApp(const MaterialApp(home: MyHome()));
+/// Flutter code sample for [BottomNavigationBar].
 
-class MyHome extends StatefulWidget {
-  const MyHome({super.key});
+class BottomNavigationBarExample extends StatefulWidget {
+  const BottomNavigationBarExample({super.key});
 
   @override
-  State<MyHome> createState() => _MyHomeState();
+  State<BottomNavigationBarExample> createState() =>
+      _BottomNavigationBarExampleState();
 }
 
-class _MyHomeState extends State<MyHome> {
+class _BottomNavigationBarExampleState
+    extends State<BottomNavigationBarExample> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -35,37 +36,28 @@ class _MyHomeState extends State<MyHome> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Secure scan!')),
-      body: <Widget>[
-        const QRCodeScanner(),
-        Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const QRCodeScanner(),
-            ));
-          },
-          child: const Text('qrView'),
-        ),
+      appBar: AppBar(
+        title: const Text('BottomNavigationBar Sample'),
       ),
-      ][_selectedIndex],
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.home),
-          //   label: 'Home',
-          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: 'Scan',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'History',
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
           ),
         ],
         currentIndex: _selectedIndex,
